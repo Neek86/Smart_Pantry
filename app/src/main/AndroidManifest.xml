@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartPantry">
+
+        <!-- Main Launcher Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -21,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Add/Edit Ingredient Activity -->
+        <activity
+            android:name=".AddEditIngredientActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>
