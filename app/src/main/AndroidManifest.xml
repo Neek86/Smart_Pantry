@@ -30,6 +30,18 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
 
+        <!-- Suggested Recipes Activity -->
+        <activity
+            android:name=".SuggestedRecipesActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <!-- Recipe Detail Activity -->
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".SuggestedRecipesActivity" />
+
     </application>
 
 </manifest>
