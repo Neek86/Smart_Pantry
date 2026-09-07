@@ -1,4 +1,4 @@
-package com.example.smartpantrymanager;
+package com.example.smartpantry;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.smartpantrymanager;
+package com.example.smartpantry;
 
 public class RecipeIngredient {
     private String name;

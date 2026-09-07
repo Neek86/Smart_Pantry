@@ -1,4 +1,4 @@
-package com.example.smartpantrymanager;
+package com.example.smartpantry;
 
 public class PantryItem {
     private long id;
