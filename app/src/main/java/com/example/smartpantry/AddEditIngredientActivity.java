@@ -1,5 +1,6 @@
 package com.example.smartpantry;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AddEditIngredientActivity extends AppCompatActivity {
 
@@ -26,11 +30,15 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         tvTitle = findViewById(R.id.tvTitle);
-        etName = findViewById(R.id.etName);
+        // Matched to layout IDs: etIngredientName & etExpiryDate
+        etName = findViewById(R.id.etIngredientName);
         etQuantity = findViewById(R.id.etQuantity);
         etUnit = findViewById(R.id.etUnit);
-        etExpiry = findViewById(R.id.etExpiry);
+        etExpiry = findViewById(R.id.etExpiryDate);
         btnSave = findViewById(R.id.btnSave);
+
+        // DatePickerDialog for Expiry Date selection
+        etExpiry.setOnClickListener(v -> showDatePickerDialog());
 
         // Check if editing existing item
         if (getIntent().hasExtra("ITEM_ID")) {
@@ -43,6 +51,23 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         }
 
         btnSave.setOnClickListener(v -> saveIngredient());
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    String formattedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay);
+                    etExpiry.setText(formattedDate);
+                },
+                year, month, day
+        );
+        datePickerDialog.show();
     }
 
     private void saveIngredient() {
