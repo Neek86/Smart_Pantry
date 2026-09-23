@@ -5,18 +5,17 @@ import java.util.List;
 
 public class RecipeMatcher {
 
-    /**
-     * Returns a list of recipes that can be made with the items currently in the pantry.
-     * A recipe is suggested if all its ingredients are present in the pantry with 
-     * sufficient quantity.
-     */
     public static List<Recipe> getSuggestedRecipes(List<Recipe> allRecipes, List<PantryItem> pantry) {
         List<Recipe> suggestions = new ArrayList<>();
 
+        if (allRecipes == null || pantry == null || pantry.isEmpty()) {
+            return suggestions;
+        }
         for (Recipe recipe : allRecipes) {
             boolean hasAllIngredients = true;
+
             for (RecipeIngredient required : recipe.getIngredients()) {
-                if (!hasSufficientIngredient(required, pantry)) {
+                if (!hasSufficientQuantity(required, pantry)) {
                     hasAllIngredients = false;
                     break;
                 }
@@ -29,15 +28,32 @@ public class RecipeMatcher {
         return suggestions;
     }
 
-    private static boolean hasSufficientIngredient(RecipeIngredient required, List<PantryItem> pantry) {
-        double totalFound = 0;
+    private static boolean hasSufficientQuantity(RecipeIngredient required, List<PantryItem> pantry) {
+        double totalQuantityFound = 0;
+        String reqName = cleanString(required.getName());
+
         for (PantryItem item : pantry) {
-            if (item.getName().equalsIgnoreCase(required.getName())) {
-                // For simplicity, we assume units match or we ignore them for basic suggestion
-                // Ideally, we would handle unit conversion
-                totalFound += item.getQuantity();
+            String itemName = cleanString(item.getName());
+
+            if (isIngredientMatch(reqName, itemName)) {
+                totalQuantityFound += item.getQuantity();
             }
         }
-        return totalFound >= required.getRequiredQuantity();
+        return totalQuantityFound >= required.getRequiredQuantity();
+    }
+
+    private static boolean isIngredientMatch(String required, String item) {
+        if (required.equals(item) || required.contains(item) || item.contains(required)) {
+            return true;
+        }
+        if (required.startsWith(item) || item.startsWith(required)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static String cleanString(String input) {
+        if (input == null) return "";
+        return input.trim().toLowerCase();
     }
 }

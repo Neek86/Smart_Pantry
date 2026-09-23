@@ -4,22 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.smartpantry.R; // EXPLICIT IMPORT TO RESOLVE SYMBOL
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SuggestedRecipesActivity extends AppCompatActivity implements RecipeAdapter.OnRecipeClickListener {
-
     private RecyclerView rvSuggestedRecipes;
     private TextView tvEmptySuggestions;
-
     private DatabaseHelper dbHelper;
     private RecipeAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,27 +34,65 @@ public class SuggestedRecipesActivity extends AppCompatActivity implements Recip
         rvSuggestedRecipes = findViewById(R.id.rvSuggestedRecipes);
         tvEmptySuggestions = findViewById(R.id.tvEmptySuggestions);
 
-        rvSuggestedRecipes.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new RecipeAdapter(new ArrayList<>(), this);
-        rvSuggestedRecipes.setAdapter(adapter);
+        if (rvSuggestedRecipes != null) {
+            rvSuggestedRecipes.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new RecipeAdapter(new ArrayList<>(), this);
+            rvSuggestedRecipes.setAdapter(adapter);
+        }
+        ImageButton btnHome = findViewById(R.id.btnHome);
+        if (btnHome != null) {
+            btnHome.setOnClickListener(v -> {
+                Intent intent = new Intent(SuggestedRecipesActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            });
+        }
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadSuggestedRecipes();
+    }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
         loadSuggestedRecipes();
     }
 
     private void loadSuggestedRecipes() {
-        List<Recipe> allRecipes = dbHelper.getAllRecipes();
-        List<PantryItem> pantry = dbHelper.getAllPantryItems();
+        boolean showAll = getIntent().getBooleanExtra("SHOW_ALL_RECIPES", false);
+        List<Recipe> recipesToDisplay;
 
-        // Strict-matching algorithm call
-        List<Recipe> matches = RecipeMatcher.getSuggestedRecipes(allRecipes, pantry);
-
-        if (matches.isEmpty()) {
-            tvEmptySuggestions.setVisibility(View.VISIBLE);
-            rvSuggestedRecipes.setVisibility(View.GONE);
+        if (showAll) {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle("All Predefined Recipes");
+            }
+            // Load all 20 recipes directly without stock checking
+            recipesToDisplay = dbHelper.getAllRecipes();
         } else {
-            tvEmptySuggestions.setVisibility(View.GONE);
-            rvSuggestedRecipes.setVisibility(View.VISIBLE);
-            adapter.updateData(matches);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle("Suggested Recipes");
+            }
+            // Match recipes against pantry inventory
+            List<Recipe> allRecipes = dbHelper.getAllRecipes();
+            List<PantryItem> pantry = dbHelper.getAllItems();
+            recipesToDisplay = RecipeMatcher.getSuggestedRecipes(allRecipes, pantry);
+        }
+
+        if (recipesToDisplay == null || recipesToDisplay.isEmpty()) {
+            if (tvEmptySuggestions != null) tvEmptySuggestions.setVisibility(View.VISIBLE);
+            if (rvSuggestedRecipes != null) rvSuggestedRecipes.setVisibility(View.GONE);
+        } else {
+            if (tvEmptySuggestions != null) tvEmptySuggestions.setVisibility(View.GONE);
+            if (rvSuggestedRecipes != null) {
+                rvSuggestedRecipes.setVisibility(View.VISIBLE);
+                if (adapter != null) {
+                    adapter.updateData(recipesToDisplay);
+                }
+            }
         }
     }
 

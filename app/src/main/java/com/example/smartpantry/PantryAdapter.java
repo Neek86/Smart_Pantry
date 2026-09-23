@@ -37,17 +37,30 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
     @Override
     public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
         PantryItem item = pantryList.get(position);
-        holder.tvName.setText(item.getName());
-        String qtyText = item.getQuantity() + " " + item.getUnit();
-        holder.tvQuantity.setText(qtyText);
 
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(item));
-        holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(item));
+        holder.tvName.setText(item.getName());
+
+        // Binds custom manually added quantity and unit safely
+        String unitStr = item.getUnit() != null ? item.getUnit() : "";
+        String qtyText = item.getQuantity() + " " + unitStr;
+        holder.tvQuantity.setText(qtyText.trim());
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(item);
+            }
+        });
+
+        holder.btnDelete.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onDeleteClick(item);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return pantryList.size();
+        return pantryList != null ? pantryList.size() : 0;
     }
 
     public void updateData(List<PantryItem> newList) {

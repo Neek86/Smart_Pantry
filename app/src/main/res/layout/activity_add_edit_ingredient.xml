@@ -2,60 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Ingredient"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Standard Text Input with Word Auto-Capitalization -->
-    <EditText
-        android:id="@+id/etIngredientName"
+    <!-- Top Blue Header Banner (Matches Main Pantry Screen) -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingredient Name (e.g. Tomato)"
-        android:inputType="textCapWords"
-        android:layout_marginBottom="16dp" />
+        android:background="#2196F3"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
-    <!-- Numeric Input for Decimal/Integer Quantities -->
-    <EditText
-        android:id="@+id/etQuantity"
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_add_ingredient"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Form Container -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantity (e.g. 2)"
-        android:inputType="numberDecimal"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <!-- Text Input for Unit -->
-    <EditText
-        android:id="@+id/etUnit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Unit (e.g. pcs, g, ml, slices)"
-        android:inputType="text"
-        android:layout_marginBottom="16dp" />
+        <!-- Standard Text Input with Word Auto-Capitalization -->
+        <EditText
+            android:id="@+id/etIngredientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="none"
+            android:hint="@string/hint_ingredient_name"
+            android:inputType="textCapWords" />
 
-    <!-- Clickable Non-Focusable Field to trigger DatePicker -->
-    <EditText
-        android:id="@+id/etExpiryDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Expiry Date (e.g. 2026-10-15)"
-        android:focusable="false"
-        android:clickable="true"
-        android:inputType="none"
-        android:layout_marginBottom="24dp" />
+        <!-- Numeric Input for Decimal/Integer Quantities -->
+        <EditText
+            android:id="@+id/etQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="none"
+            android:hint="@string/hint_quantity"
+            android:inputType="numberDecimal" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Item" />
+        <!-- Text Input for Unit -->
+        <EditText
+            android:id="@+id/etUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="none"
+            android:hint="@string/hint_unit"
+            android:inputType="text" />
 
+        <!-- Clickable Date Picker Field -->
+        <EditText
+            android:id="@+id/etExpiryDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:autofillHints="none"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/hint_expiry_date"
+            android:inputType="date" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#0D47A1"
+            android:text="@string/btn_save_item"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 </LinearLayout>

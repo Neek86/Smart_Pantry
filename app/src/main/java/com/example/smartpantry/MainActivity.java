@@ -7,11 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +19,12 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
 
     private RecyclerView rvPantry;
     private TextView tvEmptyPantry;
-    private FloatingActionButton fabAdd;
+
+    private Button btnAddIngredient;
     private Button btnSuggestedRecipes;
+    private Button btnAllRecipes;
+    private Button btnAddRecipe;
+    private Button btnAboutApp;
 
     private DatabaseHelper dbHelper;
     private PantryAdapter adapter;
@@ -36,22 +39,63 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
 
         rvPantry = findViewById(R.id.rvPantry);
         tvEmptyPantry = findViewById(R.id.tvEmptyPantry);
-        fabAdd = findViewById(R.id.fabAdd);
+
+        btnAddIngredient = findViewById(R.id.btnAddIngredient);
         btnSuggestedRecipes = findViewById(R.id.btnSuggestedRecipes);
+        btnAllRecipes = findViewById(R.id.btnAllRecipes);
+        btnAddRecipe = findViewById(R.id.btnAddRecipe);
+        btnAboutApp = findViewById(R.id.btnAboutApp);
 
         rvPantry.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PantryAdapter(pantryList, this);
         rvPantry.setAdapter(adapter);
 
-        fabAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
-            startActivity(intent);
-        });
+        // 1. Add Item
+        if (btnAddIngredient != null) {
+            btnAddIngredient.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
+                startActivity(intent);
+            });
+        }
 
-        btnSuggestedRecipes.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
-            startActivity(intent);
-        });
+        // 2. Suggested Meals
+        if (btnSuggestedRecipes != null) {
+            btnSuggestedRecipes.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
+                intent.putExtra("SHOW_ALL_RECIPES", false);
+                startActivity(intent);
+            });
+        }
+
+        // 3. Easy Recipes
+        if (btnAllRecipes != null) {
+            btnAllRecipes.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
+                intent.putExtra("SHOW_ALL_RECIPES", true);
+                startActivity(intent);
+            });
+        }
+
+        // 4. Add Recipe LINKED HERE
+        if (btnAddRecipe != null) {
+            btnAddRecipe.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, AddRecipeActivity.class);
+                startActivity(intent);
+            });
+        }
+
+        // 5. About App
+        if (btnAboutApp != null) {
+            btnAboutApp.setOnClickListener(v -> showAboutDialog());
+        }
+    }
+
+    private void showAboutDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("About Smart Pantry")
+                .setMessage("Smart Pantry v1.0\n\nAn ingredient management system designed to track household pantry stock and suggest recipes based on available inventory.")
+                .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     @Override
@@ -61,14 +105,18 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
     }
 
     private void loadPantryItems() {
-        pantryList = dbHelper.getAllPantryItems();
+        pantryList = dbHelper.getAllItems();
         if (pantryList.isEmpty()) {
-            tvEmptyPantry.setVisibility(View.VISIBLE);
-            rvPantry.setVisibility(View.GONE);
+            if (tvEmptyPantry != null) tvEmptyPantry.setVisibility(View.VISIBLE);
+            if (rvPantry != null) rvPantry.setVisibility(View.GONE);
         } else {
-            tvEmptyPantry.setVisibility(View.GONE);
-            rvPantry.setVisibility(View.VISIBLE);
-            adapter.updateData(pantryList);
+            if (tvEmptyPantry != null) tvEmptyPantry.setVisibility(View.GONE);
+            if (rvPantry != null) {
+                rvPantry.setVisibility(View.VISIBLE);
+                if (adapter != null) {
+                    adapter.updateData(pantryList);
+                }
+            }
         }
     }
 
@@ -85,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
 
     @Override
     public void onDeleteClick(PantryItem item) {
-        dbHelper.deletePantryItem(item.getId());
+        dbHelper.deleteItem(item.getId());
         Toast.makeText(this, item.getName() + " deleted", Toast.LENGTH_SHORT).show();
         loadPantryItems();
     }

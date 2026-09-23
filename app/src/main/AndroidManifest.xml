@@ -42,6 +42,12 @@
             android:exported="false"
             android:parentActivityName=".SuggestedRecipesActivity" />
 
+        <!-- Custom Add Recipe Activity -->
+        <activity
+            android:name=".AddRecipeActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
     </application>
 
 </manifest>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Smart Pantry</string>
+    <string name="title_add_ingredient">Add Ingredient</string>
+    <string name="hint_ingredient_name">Ingredient Name (e.g. Tomato)</string>
+    <string name="hint_quantity">Quantity (e.g. 2)</string>
+    <string name="hint_unit">Unit (e.g. loose, g, ml, slices)</string>
+    <string name="hint_expiry_date">Expiry Date (e.g. 2026-10-15)</string>
+    <string name="btn_save_item">Save Item</string>
 </resources>

@@ -1,65 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <!-- Top Action Toolbar -->
+    <!-- Top Header Banner -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#2196F3"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="#2196F3">
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="My Pantry"
+            android:text="The Pantry"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnSuggestedRecipes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Suggested Recipes"
-            android:textColor="@android:color/white"
-            android:backgroundTint="#0D47A1" />
     </LinearLayout>
 
-    <!-- Empty Pantry View -->
+    <!-- Master Button Container -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerLayout"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Row 1 Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddIngredient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="#C5F32136"
+                android:text="Add Item"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnSuggestedRecipes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="#8B720CC5"
+                android:text="Suggested Meals"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAllRecipes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#24B1E4"
+                android:text="Easy Recipes"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- Row 2 Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddRecipe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:backgroundTint="#4CAF50"
+                android:text="Add Recipe"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+
+            <Button
+                android:id="@+id/btnAboutApp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#FF9800"
+                android:text="About App"
+                android:textColor="@android:color/white"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Empty Pantry Message -->
     <TextView
         android:id="@+id/tvEmptyPantry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Your pantry is empty.\nTap '+' below to add ingredients!"
+        android:text="Your pantry is empty.\nTap 'Add Item' above to add ingredients!"
         android:textAlignment="center"
-        android:textSize="16sp"
         android:textColor="@android:color/darker_gray"
+        android:textSize="16sp"
         android:visibility="gone" />
 
-    <!-- RecyclerView for Pantry Items -->
+    <!-- Pantry RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPantry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerLayout"
+        android:layout_below="@id/buttonContainer"
         android:padding="8dp" />
-
-    <!-- Add Ingredient Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="24dp"
-        android:contentDescription="Add Ingredient"
-        app:srcCompat="@android:drawable/ic_input_add" />
 
 </RelativeLayout>
