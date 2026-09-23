@@ -15,7 +15,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
         TextView tvTitle = findViewById(R.id.tvDetailTitle);
         TextView tvIngredients = findViewById(R.id.tvDetailIngredients);
         TextView tvInstructions = findViewById(R.id.tvDetailInstructions);
@@ -32,7 +31,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(name);
         }
     }
-
     @Override
     public boolean onSupportNavigateUp() {
         finish();

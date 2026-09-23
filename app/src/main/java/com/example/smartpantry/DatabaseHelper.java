@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "smart_pantry.db";
     private static final int DATABASE_VERSION = 3;
 
-    // Pantry Table Constants
+    // Table Constants
     public static final String TABLE_PANTRY = "pantry";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_NAME = "name";
@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_RECIPES = "recipes";
     public static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredients";
 
-    // SQL Creation Strings
+    // SQLite CREATE TABLE Statements
     private static final String TABLE_CREATE_PANTRY =
             "CREATE TABLE " + TABLE_PANTRY + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -71,10 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // ==========================================
-    // PANTRY OPERATIONS
-    // ==========================================
-
+    // ==========================================OPERATIONS
     public long insertItem(PantryItem item) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
@@ -133,10 +130,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // ==========================================
-    // RECIPE OPERATIONS
-    // ==========================================
 
+    // ==========================================RECIPE OPERATIONS
     public long insertRecipe(Recipe recipe) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
@@ -174,14 +169,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String name = cursor.getString(nameIdx);
                     String instructions = cursor.getString(instIdx);
 
-                    // Fetch associated ingredients
+                    // Fetching associated ingredients
                     List<RecipeIngredient> ingredients = getIngredientsForRecipe(id);
                     recipes.add(new Recipe(id, name, ingredients, instructions));
                 } while (cursor.moveToNext());
             }
         } catch (Exception ignored) {}
 
-        // 2. Add Predefined Quick & Easy Recipes
+        // 2. Adding Predefined Quick & Easy Recipes
         recipes.addAll(getPredefinedRecipes());
 
         return recipes;

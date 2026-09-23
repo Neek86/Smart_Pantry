@@ -27,7 +27,6 @@ public class RecipeMatcher {
 
         return suggestions;
     }
-
     private static boolean hasSufficientQuantity(RecipeIngredient required, List<PantryItem> pantry) {
         double totalQuantityFound = 0;
         String reqName = cleanString(required.getName());

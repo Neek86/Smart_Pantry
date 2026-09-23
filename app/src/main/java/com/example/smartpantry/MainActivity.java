@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             });
         }
 
-        // 4. Add Recipe LINKED HERE
+        // 4. Add Recipe
         if (btnAddRecipe != null) {
             btnAddRecipe.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, AddRecipeActivity.class);
@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             btnAboutApp.setOnClickListener(v -> showAboutDialog());
         }
     }
-
     private void showAboutDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("About Smart Pantry")
@@ -97,13 +96,11 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
                 .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
                 .show();
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         loadPantryItems();
     }
-
     private void loadPantryItems() {
         pantryList = dbHelper.getAllItems();
         if (pantryList.isEmpty()) {
@@ -119,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             }
         }
     }
-
     @Override
     public void onItemClick(PantryItem item) {
         Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
@@ -130,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
         intent.putExtra("ITEM_EXPIRY", item.getExpiryDate());
         startActivity(intent);
     }
-
     @Override
     public void onDeleteClick(PantryItem item) {
         dbHelper.deleteItem(item.getId());
