@@ -18,6 +18,19 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".SuggestedRecipesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddEditIngredientActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRecipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecipeDetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
