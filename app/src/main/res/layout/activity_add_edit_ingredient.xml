@@ -5,7 +5,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!-- Top Blue Header Banner (Matches Main Pantry Screen) -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -27,14 +26,13 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Form Container -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Standard Text Input with Word Auto-Capitalization -->
         <EditText
             android:id="@+id/etIngredientName"
             android:layout_width="match_parent"
@@ -44,7 +42,6 @@
             android:hint="@string/hint_ingredient_name"
             android:inputType="textCapWords" />
 
-        <!-- Numeric Input for Decimal/Integer Quantities -->
         <EditText
             android:id="@+id/etQuantity"
             android:layout_width="match_parent"
@@ -54,7 +51,6 @@
             android:hint="@string/hint_quantity"
             android:inputType="numberDecimal" />
 
-        <!-- Text Input for Unit -->
         <EditText
             android:id="@+id/etUnit"
             android:layout_width="match_parent"
@@ -64,7 +60,6 @@
             android:hint="@string/hint_unit"
             android:inputType="text" />
 
-        <!-- Clickable Date Picker Field -->
         <EditText
             android:id="@+id/etExpiryDate"
             android:layout_width="match_parent"

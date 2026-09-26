@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "995918965868",
+    "project_id": "test-50fdb",
+    "storage_bucket": "test-50fdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995918965868:android:f13b2757bf1df1d0e03c49",
+        "android_client_info": {
+          "package_name": "com.company.test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcEEWZl7ZyNKpVQsLhpSpOnOKZc1SEiw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995918965868:android:3c4b5f51804d7399e03c49",
+        "android_client_info": {
+          "package_name": "com.example.smartpantry"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcEEWZl7ZyNKpVQsLhpSpOnOKZc1SEiw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
