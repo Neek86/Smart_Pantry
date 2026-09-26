@@ -176,7 +176,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         } catch (Exception ignored) {}
 
-        // 2. Adding Predefined Quick & Easy Recipes
+        // 2. Adding\ Predefined Quick & Easy Recipes
         recipes.addAll(getPredefinedRecipes());
 
         return recipes;
