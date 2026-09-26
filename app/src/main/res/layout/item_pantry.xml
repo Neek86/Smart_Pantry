@@ -12,29 +12,29 @@
         android:layout_toStartOf="@id/btnDelete"
         android:orientation="vertical">
 
-        <!-- Ingredient Name Header: Bold White -->
+        <!-- Ingredient Name Header: Adapts to primary text color (Black/White) -->
         <TextView
             android:id="@+id/tvItemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cheese"
-            android:textColor="@android:color/white"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Manually Added Quantity & Unit Details: Italic White -->
+        <!-- Manually Added Quantity & Unit Details: Adapts to secondary text color -->
         <TextView
             android:id="@+id/tvItemQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="2.0 50g"
-            android:textColor="@android:color/white"
+            android:textColor="?android:attr/textColorSecondary"
             android:textSize="14sp"
             android:textStyle="italic" />
     </LinearLayout>
 
-    <!-- Delete Button -->
+    <!-- Delete Button: Tint adapts automatically to primary text/icon color -->
     <ImageButton
         android:id="@+id/btnDelete"
         android:layout_width="48dp"
@@ -44,6 +44,6 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Delete Item"
         android:src="@android:drawable/ic_menu_delete"
-        app:tint="@android:color/white" />
+        app:tint="?android:attr/textColorPrimary" />
 
 </RelativeLayout>
