@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <!-- Top Blue Header Bar with Title & Home Button -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -39,7 +38,6 @@
             app:tint="@android:color/white" />
     </LinearLayout>
 
-    <!-- Empty State Message -->
     <TextView
         android:id="@+id/tvEmptySuggestions"
         android:layout_width="wrap_content"
@@ -52,7 +50,6 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <!-- Recipes List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSuggestedRecipes"
         android:layout_width="match_parent"

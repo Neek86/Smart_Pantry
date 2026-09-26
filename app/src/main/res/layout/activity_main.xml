@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <!-- Top Header Banner -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -26,7 +25,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <!-- Master Button Container -->
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
@@ -35,7 +33,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <!-- Row 1 Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +73,6 @@
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Row 2 Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +103,6 @@
 
     </LinearLayout>
 
-    <!-- Empty Pantry Message -->
     <TextView
         android:id="@+id/tvEmptyPantry"
         android:layout_width="wrap_content"
@@ -119,7 +114,6 @@
         android:textSize="16sp"
         android:visibility="gone" />
 
-    <!-- Pantry RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPantry"
         android:layout_width="match_parent"

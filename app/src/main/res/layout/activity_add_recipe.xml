@@ -5,7 +5,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!-- Top Blue Header Banner -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -34,7 +33,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Recipe Name Input -->
             <EditText
                 android:id="@+id/etRecipeName"
                 android:layout_width="match_parent"
@@ -43,7 +41,6 @@
                 android:hint="Recipe Name (e.g. Pasta Bake)"
                 android:inputType="textCapWords" />
 
-            <!-- Ingredients Input Format Note -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,7 +49,6 @@
                 android:textSize="12sp"
                 android:layout_marginBottom="4dp" />
 
-            <!-- Multiline Ingredients Input -->
             <EditText
                 android:id="@+id/etIngredients"
                 android:layout_width="match_parent"
@@ -62,7 +58,6 @@
                 android:hint="Egg, 2, loose&#10;Milk, 0.5, cup"
                 android:inputType="textMultiLine" />
 
-            <!-- Instructions Input -->
             <EditText
                 android:id="@+id/etInstructions"
                 android:layout_width="match_parent"
@@ -72,7 +67,6 @@
                 android:hint="Preparation Instructions..."
                 android:inputType="textMultiLine" />
 
-            <!-- Save Recipe Button -->
             <Button
                 android:id="@+id/btnSaveRecipe"
                 android:layout_width="match_parent"

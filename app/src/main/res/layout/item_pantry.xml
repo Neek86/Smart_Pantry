@@ -12,7 +12,6 @@
         android:layout_toStartOf="@id/btnDelete"
         android:orientation="vertical">
 
-        <!-- Ingredient Name Header: Adapts to primary text color (Black/White) -->
         <TextView
             android:id="@+id/tvItemName"
             android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <!-- Manually Added Quantity & Unit Details: Adapts to secondary text color -->
         <TextView
             android:id="@+id/tvItemQuantity"
             android:layout_width="wrap_content"
@@ -34,7 +32,6 @@
             android:textStyle="italic" />
     </LinearLayout>
 
-    <!-- Delete Button: Tint adapts automatically to primary text/icon color -->
     <ImageButton
         android:id="@+id/btnDelete"
         android:layout_width="48dp"
