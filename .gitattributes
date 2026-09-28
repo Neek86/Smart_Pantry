@@ -1,12 +1,9 @@
-# 1. Force Java for source files
 *.java linguist-language=Java
 
-# 2. Strip ALL HTML and XML files from GitHub language calculations
 *.html linguist-detectable=false
 *.htm linguist-detectable=false
 *.xml linguist-detectable=false
 
-# 3. Mark all resources, docs, build, and vendor directories as non-code
 app/src/main/res/** linguist-vendored=true
 app/build/** linguist-generated=true
 build/** linguist-generated=true
