@@ -49,6 +49,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
 
         btnSave.setOnClickListener(v -> saveIngredient());
     }
+
     private void showDatePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
@@ -65,6 +66,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         );
         datePickerDialog.show();
     }
+
     private void saveIngredient() {
         String name = etName.getText().toString().trim();
         String qtyStr = etQuantity.getText().toString().trim();

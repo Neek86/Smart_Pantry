@@ -16,14 +16,12 @@ public class PantryItem {
         this.unit = unit;
         this.expiryDate = expiryDate;
     }
-
     public PantryItem(String name, double quantity, String unit, String expiryDate) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.expiryDate = expiryDate;
     }
-
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 

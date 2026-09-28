@@ -31,6 +31,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(name);
         }
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         finish();

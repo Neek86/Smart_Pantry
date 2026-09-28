@@ -18,7 +18,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public interface OnRecipeClickListener {
         void onRecipeClick(Recipe recipe);
     }
-
     public RecipeAdapter(List<Recipe> recipes, OnRecipeClickListener listener) {
         this.recipes = recipes;
         this.listener = listener;

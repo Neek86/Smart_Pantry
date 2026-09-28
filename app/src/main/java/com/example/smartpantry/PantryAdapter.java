@@ -40,7 +40,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
 
         holder.tvName.setText(item.getName());
 
-        // Binds custom manually added quantity and unit safely
+        // this binds custom manually added quantity and unit safely
         String unitStr = item.getUnit() != null ? item.getUnit() : "";
         String qtyText = item.getQuantity() + " " + unitStr;
         holder.tvQuantity.setText(qtyText.trim());
@@ -67,7 +67,6 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         this.pantryList = newList;
         notifyDataSetChanged();
     }
-
     static class PantryViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvQuantity;
         ImageButton btnDelete;

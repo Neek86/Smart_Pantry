@@ -31,7 +31,6 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         btnSaveRecipe.setOnClickListener(v -> saveRecipe());
     }
-
     private void saveRecipe() {
         String name = etRecipeName.getText().toString().trim();
         String rawIngredients = etIngredients.getText().toString().trim();

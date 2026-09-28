@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
         adapter = new PantryAdapter(pantryList, this);
         rvPantry.setAdapter(adapter);
 
-        // 1. Add Item
         if (btnAddIngredient != null) {
             btnAddIngredient.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, AddEditIngredientActivity.class);
@@ -58,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             });
         }
 
-        // 2. Suggested Meals
         if (btnSuggestedRecipes != null) {
             btnSuggestedRecipes.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
@@ -67,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             });
         }
 
-        // 3. Easy Recipes
         if (btnAllRecipes != null) {
             btnAllRecipes.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
@@ -76,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             });
         }
 
-        // 4. Add Recipe
         if (btnAddRecipe != null) {
             btnAddRecipe.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, AddRecipeActivity.class);
@@ -84,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements PantryAdapter.OnI
             });
         }
 
-        // 5. About App
         if (btnAboutApp != null) {
             btnAboutApp.setOnClickListener(v -> showAboutDialog());
         }

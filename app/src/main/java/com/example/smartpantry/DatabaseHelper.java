@@ -129,9 +129,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return db.update(TABLE_PANTRY, values, COLUMN_ID + " = ?", new String[]{String.valueOf(item.getId())});
         }
     }
-
-
-    // ==========================================RECIPE OPERATIONS
     public long insertRecipe(Recipe recipe) {
         try (SQLiteDatabase db = this.getWritableDatabase()) {
             ContentValues values = new ContentValues();
@@ -181,7 +178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return recipes;
     }
-
     private List<RecipeIngredient> getIngredientsForRecipe(long recipeId) {
         List<RecipeIngredient> ingredients = new ArrayList<>();
         String query = "SELECT * FROM " + TABLE_RECIPE_INGREDIENTS + " WHERE recipe_id = ?";
@@ -204,7 +200,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return ingredients;
     }
-
     private List<Recipe> getPredefinedRecipes() {
         List<Recipe> recipes = new ArrayList<>();
 

@@ -14,7 +14,6 @@ public class Recipe {
         this.ingredients = ingredients;
         this.instructions = instructions;
     }
-
     public long getId() { return id; }
     public String getName() { return name; }
     public List<RecipeIngredient> getIngredients() { return ingredients; }

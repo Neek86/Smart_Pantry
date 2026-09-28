@@ -19,6 +19,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity implements Recip
     private TextView tvEmptySuggestions;
     private DatabaseHelper dbHelper;
     private RecipeAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +56,7 @@ public class SuggestedRecipesActivity extends AppCompatActivity implements Recip
         super.onResume();
         loadSuggestedRecipes();
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -70,13 +72,13 @@ public class SuggestedRecipesActivity extends AppCompatActivity implements Recip
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle("All Predefined Recipes");
             }
-            // Load all 20 recipes directly without stock checking
+            // Loads all 20 recipes directly without stock checking
             recipesToDisplay = dbHelper.getAllRecipes();
         } else {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setTitle("Suggested Recipes");
             }
-            // Match recipes against pantry inventory
+            // Matchs recipes against pantry inventory
             List<Recipe> allRecipes = dbHelper.getAllRecipes();
             List<PantryItem> pantry = dbHelper.getAllItems();
             recipesToDisplay = RecipeMatcher.getSuggestedRecipes(allRecipes, pantry);
